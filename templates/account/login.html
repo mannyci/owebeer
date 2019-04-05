@@ -14,8 +14,8 @@
         <div class="card card-login">
           {% include "_messages.html" %}
           <div class="card-header card-header-blue text-center">
-            <a href="{% url 'index' %}"><img class="img-logo" id="img_logo" src="/static/img/logo-small.png"></a>
-            <h4 class="card-title">Login to YAFI</h4>
+            <a href="{% url 'index' %}"><img class="img-logo" id="img_logo" src="/static/img/beer-small.png"></a>
+            <h4 class="card-title">Login to OweYouBeer</h4>
           </div>
           <div class="card-body ">
             {% csrf_token %}
@@ -35,7 +35,7 @@
           </div>
           <div class="card-footer ">
             <div class="form-group">
-              <input class="btn btn-primary btn-round float-right" type="submit" value="Log In">
+              <input class="btn btn-primary btn-round float-right" type="submit" value="Cheers">
               <a class="btn btn-warning btn-round float-left" href="javascript:history.back()">Cancel</a>
             </div>
           </div>
