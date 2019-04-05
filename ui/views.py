@@ -11,7 +11,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from django.db.models import Count
-from core.models import Host, Environment, Hostgroup
 
 
 from .utils import needs_setup
