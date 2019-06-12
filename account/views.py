@@ -37,7 +37,7 @@ def SignupView(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, 'Your account has been created! Please log in')
+            messages.success(request, 'Your account with username %s has been created! Please log in' % username)
             return redirect('account:login')
     else:
         form = SignupForm()

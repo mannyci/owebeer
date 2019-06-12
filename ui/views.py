@@ -8,43 +8,28 @@ from django.views.generic import View, DetailView
 from django.template import loader
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from django.db.models import Count
-
+from django.db.models import Count, Sum
+from core.models import Beer, Team
 
 from .utils import needs_setup
 from .forms import SetupForm
 
-
-@login_required
-def overview(request):
-    if request.user.is_authenticated():
-        return render(request, 'index.html')
-    else:
-        return redirect('account:login')
-
-
-class DashboardView(DetailView):
+class DashboardView(LoginRequiredMixin, DetailView):
     template = loader.get_template('index.html')
 
     def get(self, request):
         if needs_setup():
             return redirect('ui:setup')
 
-        hosts = Host.objects.all().count()
-        envs = Environment.objects.all().count()
-        hostgroups = Hostgroup.objects.all().count()
-        recentUpdatedHosts = Host.objects.all().order_by('-updated_at')[:5]
-        environments = Environment.objects.all().annotate(host_count=Count('host'))
-        groupdata = Hostgroup.objects.all().annotate(host_count=Count('host'))
+        beers = Beer.objects.annotate(total=Count('count')).filter(user=request.user)
+        teams = Team.objects.count()
+        recentBeers = Beer.objects.filter(user=request.user).order_by('-added_at')[:5]
         return HttpResponse(self.template.render({
-            'hosts': hosts,
-            'envs': envs,
-            'hostgroups': hostgroups,
-            'recentUpdatedHosts': recentUpdatedHosts,
-            'environments': environments,
-            'groupdata': groupdata
+            'beers': beers,
+            'teams': teams,
+            'recentBeers': recentBeers
         }, request))
 
 

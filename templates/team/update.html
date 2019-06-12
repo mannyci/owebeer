@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
-{% block title %}New hostgroup{% endblock %}
+{% block title %}Update {{ team }}{% endblock %}
+{% block menu %}Update Team{% endblock %}
 
 {% block body %}
 
@@ -9,8 +10,8 @@
       <form method="POST">
         <div class="card">
           {% include "_messages.html" %}
-          <div class="card-header card-header-blue text-center">
-            <h4 class="card-title">Add new hostgroup</h4>
+          <div class="card-header">
+            <h4 class="card-title">Update : {{ host }}</h4>
           </div>
           <div class="card-body ">
             {% csrf_token %}
@@ -18,7 +19,7 @@
           </div>
           <div class="card-footer ">
             <div class="form-group">
-              <input class="btn btn-primary btn-round float-right" type="submit" value="Add">
+              <input class="btn btn-primary btn-round float-right" type="submit" value="Update">
               <a class="btn btn-warning btn-round float-left" href="javascript:history.back()">Back</a>
             </div>
           </div>
@@ -27,14 +28,13 @@
     </div>
   </div>
 </div>
-
 {% endblock %}
 
 {% block script %}
 {{ block.super }}
 <script>
 $(document).ready(function() {
-    $('#hostsNav').addClass('active');
+    $('#teamsNav').addClass('active');
 });
 </script>
 {% endblock %}

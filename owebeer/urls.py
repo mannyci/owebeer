@@ -17,6 +17,6 @@ def index(request):
 urlpatterns = [
 	url(r'^$', index, name='index'),
 	url(r'^', include('ui.urls', namespace='ui')),
-    url(r'^account/', include('account.urls', namespace='account')),
+    url(r'^', include('account.urls', namespace='account')),
     url(r'^admin/', admin.site.urls),
 ]

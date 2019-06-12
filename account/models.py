@@ -1,8 +1,9 @@
 import hashlib
 from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
-
+from django.contrib.auth.models import Group
 
 class AccountManager(BaseUserManager):
     def create_user(self, email, password=None, **kwargs):
@@ -24,14 +25,15 @@ class AccountManager(BaseUserManager):
     def create_superuser(self, email, password, **kwargs):
         account = self.create_user(email, password, **kwargs)
 
-        account.is_admin = True
+        account.is_superuser = True
+        account.is_staff = True
         account.is_active = True
         account.save()
 
         return account
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractUser):
     class Meta:
         db_table = 'accounts'
 
@@ -42,11 +44,8 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=40, blank=True)
     avatar_hash = models.CharField(max_length=140, blank=True)
 
-    is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     objects = AccountManager()
 

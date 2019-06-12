@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block title %}New host{% endblock %}
+{% block title %}New Team{% endblock %}
 
 {% block body %}
 
@@ -10,7 +10,7 @@
         <div class="card">
           {% include "_messages.html" %}
           <div class="card-header card-header-blue text-center">
-            <h4 class="card-title">Add new host</h4>
+            <h4 class="card-title">Add new team</h4>
           </div>
           <div class="card-body ">
             {% csrf_token %}
@@ -34,7 +34,7 @@
 {{ block.super }}
 <script>
 $(document).ready(function() {
-    $('#hostsNav').addClass('active');
+    $('#teamNav').addClass('active');
 });
 </script>
 {% endblock %}
