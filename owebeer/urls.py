@@ -19,4 +19,5 @@ urlpatterns = [
 	url(r'^', include('ui.urls', namespace='ui')),
     url(r'^', include('account.urls', namespace='account')),
     url(r'^admin/', admin.site.urls),
+	url(r'^api/', include('rest_framework.urls', namespace='api'))
 ]
