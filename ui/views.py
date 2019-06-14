@@ -23,7 +23,8 @@ class DashboardView(LoginRequiredMixin, DetailView):
         if needs_setup():
             return redirect('ui:setup')
 
-        beers = Beer.objects.annotate(total=Count('count')).filter(user=request.user)
+        beers = Beer.objects.all().filter(user=request.user).aggregate(total=Sum('count'))
+        print beers
         teams = Team.objects.count()
         recentBeers = Beer.objects.filter(user=request.user).order_by('-added_at')[:5]
         return HttpResponse(self.template.render({
