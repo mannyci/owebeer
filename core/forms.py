@@ -18,7 +18,7 @@ class NewTeamForm(forms.ModelForm):
         if Team.objects.filter(name=name, name__iexact=name).exists():
             team = Team.objects.get(name=name)
             raise ValidationError(
-                mark_safe(('Team {0} with that name already exists, click <a href="{0}">here</a>').format(host))
+                mark_safe(('Team <a href="{0}"><strong>{1}</a></strong> with that name already exists.').format(team.id, team.name))
             )
         return name
 

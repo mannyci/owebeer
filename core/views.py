@@ -33,7 +33,7 @@ class TeamCreate(LoginRequiredMixin, CreateView):
         return reverse('ui:teams')
 
 
-class TeamList(ListView):
+class TeamList(LoginRequiredMixin, ListView):
     model = Team
     template_name = 'team/list.html'
     paginate_by = 2
@@ -48,7 +48,7 @@ class TeamList(ListView):
         return self.render_to_response(context)
 
 
-class TeamDetail(DetailView):
+class TeamDetail(LoginRequiredMixin, DetailView):
     model = Team
     template_name = 'team/details.html'
     slug_field = 'id'
@@ -61,7 +61,7 @@ class TeamDetail(DetailView):
         return get_object_or_404(Team, id__iexact=self.id)
 
 
-class TeamEdit(UpdateView):
+class TeamEdit(LoginRequiredMixin, UpdateView):
     model = Team
     form_class = TeamUpdateForm
     template_name = 'team/update.html'
@@ -80,24 +80,25 @@ class TeamEdit(UpdateView):
         return reverse('ui:teams')
 
 
-class TeamDelete(DeleteView):
+class TeamDelete(LoginRequiredMixin, DeleteView):
     model = Team
-    template_name = 'host/delete.html'
+    template_name = 'team/delete.html'
 
     def get_object(self, **kwargs):
         self.name = self.kwargs.get("name")
         if self.name is None:
             raise Http404
-        return get_object_or_404(Host, name__iexact=self.name)
+        return get_object_or_404(Team, name__iexact=self.name)
 
     def get_success_url(self):
         messages.success(self.request, 'Host %s deleted successfully' % self.name)
         return reverse('ui:hosts')
 
-class Members(ListView):
+class Members(LoginRequiredMixin, ListView):
     model = Team
     template_name = 'member/details.html'
     context_object_name = 'teams'
+    paginate_by = 2
 
     def get(self, request, *args, **kwagrs):
         team = request.GET.get('team')

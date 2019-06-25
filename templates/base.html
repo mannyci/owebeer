@@ -41,7 +41,7 @@
               <a href="{% url 'ui:overview' %}" class="nav-link"><i class="fa fa-tachometer"></i> Overview</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="btn btn-just-icon btn-info" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false" title="Teams">
+              <a class="btn btn-just-icon btn-info btn-magnify" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false" title="Teams">
                 <i class="fa fa-users"></i>
                 <p class="d-lg-none">Teams</p>
               </a>
@@ -50,12 +50,14 @@
                 <a class="dropdown-item" href="{% url 'ui:teams' %}">Teams</a>
               </ul>
             </li>
+            {% if user.is_superuser %}
             <li class="nav-item">
-              <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
-                <i class="fa fa-facebook-square"></i>
+              <a class="btn btn-just-icon btn-danger btn-magnify" rel="tooltip" title="Admin" data-placement="bottom" href="{% url 'admin:index' %}">
+                <i class="nc-icon nc-settings"></i>
                 <p class="d-lg-none">Facebook</p>
               </a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
                 <i class="fa fa-instagram"></i>
@@ -63,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="#account" class="btn btn-just-icon btn-warning" data-toggle="dropdown" aria-expanded="false" title="Account">
+                <a href="#account" class="btn btn-just-icon btn-info" data-toggle="dropdown" aria-expanded="false" title="Account">
                     {% if user.is_authenticated %}
                     <img src="{{ user.gravatar }}" width="18" height="18" class="img-circle img-no-padding">
                     {% else %}
