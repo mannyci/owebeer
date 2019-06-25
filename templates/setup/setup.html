@@ -3,69 +3,80 @@
 
 {% block body %}
 
-<div class="content">
-  <div class="col-md-8 mr-auto ml-auto">
-    <div class="wizard-container">
-      <div class="card wizard-card card-wizard " data-color="orange" id="wizardProfile">
-        <form action="{% url 'ui:setup' %}" method="POST">
-          <div class="card-header text-center bg-info">
-            <div class="text-center">
-              <!-- <a href="{% url 'index' %}"><i class="nc-icon nc-settings text-warning"></i></a> -->
-              <a href="{% url 'index' %}" class="simple-text logo-mini">
-                <div class="logo-image-small">
-                  <img src="/static/img/beer-small.png">
-                </div>
-              </a>
-            </div>
-            <h3 class="card-title">Wellcome to OweYouBeer</h3>
-          </div>
-          <div class="wizard-navigation">
-            <ul>
-              <li class="nav-item"><a class="nav-link" href="#admin" data-toggle="tab">Admin</a></li>
-              <li class="nav-item"><a class="nav-link" href="#customize" data-toggle="tab">Customize</a></li>
-            </ul>
-          </div>
-          <div class="tab-content">
-            <div class="tab-pane" id="admin">
-              <h5 class="info-text"> Let's stetup the first user </h5>
-              <div class="row justify-content-center">
-                <div class="col-sm-6">
-                  {% csrf_token %}
-                  {% include "_macros.html" %}
-                </div>
-              </div>
-            </div>
-              <div class="tab-pane" id="customize">
-                <h4 class="info-text"> What are you doing? (checkboxes) </h4>
-                <div class="row">
-
-
-
-                </div>
-              </div>
-          </div>
-          <div class="wizard-footer height-wizard">
-            <div class="pull-right">
-              <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
-              <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
-            </div>
-
-              <div class="pull-left">
-                  <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
-              </div>
-          </div>
-
-        </form>
-      </div>
-    </div> <!-- wizard container -->
-
-
+<div class="content" id="welcome">
+  <div class="row">
+    <div class="col-md-8 ml-auto mr-auto text-center">
+      <h2 class="title">Why our product is the best</h2>
+      <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here.</h5>
+    </div>
   </div>
-
-
+  <div class="row">
+    <div class="col-md-3">
+      <div class="info">
+        <div class="icon icon-danger">
+          <i class="nc-icon nc-palette"></i>
+        </div>
+        <div class="description">
+          <h4 class="info-title">Beautiful Gallery</h4>
+          <p class="description">Spend your time generating new ideas. You don't have to think of implementing.</p>
+          <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="info">
+        <div class="icon icon-danger">
+          <i class="nc-icon nc-bulb-63"></i>
+        </div>
+        <div class="description">
+          <h4 class="info-title">New Ideas</h4>
+          <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient.</p>
+          <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="info">
+        <div class="icon icon-danger">
+          <i class="nc-icon nc-chart-bar-32"></i>
+        </div>
+        <div class="description">
+          <h4 class="info-title">Statistics</h4>
+          <p>Choose from a veriety of many colors resembling sugar paper pastels.</p>
+          <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="info">
+        <div class="icon icon-danger">
+          <i class="nc-icon nc-sun-fog-29"></i>
+        </div>
+        <div class="description">
+          <h4 class="info-title">Delightful design</h4>
+          <p>Find unique and handmade delightful designs related items directly from our sellers.</p>
+          <a href="#pkp" class="btn btn-link btn-danger">See more</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-
+<nav id="cd-vertical-nav">
+  <ul>
+    <li>
+      <a href="#welcome" data-number="1" class="">
+        <span class="cd-dot"></span>
+        <span class="cd-label">Welcome</span>
+      </a>
+    </li>
+    <li>
+      <a href="#setup" data-number="2" class="">
+        <span class="cd-dot"></span>
+        <span class="cd-label">Setup</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 {% endblock %}
 
