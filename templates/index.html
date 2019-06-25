@@ -1,112 +1,55 @@
-{% extends 'layout.html' %}
-{% block title %}Home{% endblock %}
-{% block menu %}Home{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Overview{% endblock %}
 
 {% block body %}
-  <div class="content">
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-globe text-warning"></i>
-                </div>
-              </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Beers</p>
-                  <p class="card-title">{{ beers.total }}</p>
-                </div>
-              </div>
+      <div class="col-md-3">
+          <div class="card card-pricing">
+            <div class="card-body">
+              <a href="#" class="card-icon">
+                <span class="icon-simple"><i class="fa fa-beer btn-twitter"></i></span>
+              </a>
+              <h3 class="card-title">Beers</h3>
+              <h4 class="card-description">{{ beers.total }}</h4>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
-            <div class="stats">
-              <i class="fa fa-refresh"></i> <a href="#">View all</a>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-money-coins text-success"></i>
-                </div>
-              </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Teams</p>
-                  <p class="card-title">{{ teams }}
-                    </p><p>
-                </p></div>
-              </div>
+      <div class="col-md-3">
+          <div class="card card-pricing">
+            <div class="card-body">
+              <a href="{% url 'ui:teams' %}" class="card-icon">
+                <span class="icon-simple"><i class="fa fa-users btn-google"></i></span>
+              </a>
+              <h3 class="card-title">Teams</h3>
+              <h4 class="card-description">{{ teams }}</h4>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
-            <div class="stats">
-              <i class="fa fa-calendar-o"></i> <a href="{% url 'ui:teams' %}">View all</a>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-vector text-danger"></i>
-                </div>
+      <div class="col-md-3">
+          <div class="card card-pricing">
+            <div class="card-body">
+              <div class="card-icon">
+                <span class="icon-simple"><i class="fa fa-users btn-reddit"></i></span>
               </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Hostgroups</p>
-                  <p class="card-title">{{ hostgroups }}
-                    </p><p>
-                </p></div>
-              </div>
+              <h3 class="card-title">Teams</h3>
+              <h4 class="card-description">
+                .
+              </h4>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
-            <div class="stats">
-              <i class="fa fa-clock-o"></i> In the last hour
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-body ">
-            <div class="row">
-              <div class="col-5 col-md-4">
-                <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-favourite-28 text-primary"></i>
-                </div>
+      <div class="col-md-3">
+          <div class="card card-pricing">
+            <div class="card-body">
+              <div class="card-icon">
+                <span class="icon-simple"><i class="fa fa-users btn-facebook"></i></span>
               </div>
-              <div class="col-7 col-md-8">
-                <div class="numbers">
-                  <p class="card-category">Followers</p>
-                  <p class="card-title">+45K
-                    </p><p>
-                </p></div>
-              </div>
+              <h3 class="card-title">Teams</h3>
+              <h4 class="card-description">
+                .
+              </h4>
             </div>
           </div>
-          <div class="card-footer ">
-            <hr>
-            <div class="stats">
-              <i class="fa fa-refresh"></i> Update now
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="row">
@@ -156,58 +99,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-<div class="col-md-6">
-  <div class="card">
-    <div class="card-header">
-      <h5 class="card-title">Hosts per group</h5>
-    </div>
-    <div class="card-body">
-      <!-- For highchart -->
-      <!-- <div id="groupChart"></div> -->
-      <canvas id="groupChart" class="ct-chart ct-perfect-fourth"></canvas>
-    </div>
-  </div>
-</div>
-{% endblock %}
-
-{% block script %}
-{{ block.super }}
-<!-- <script src="https://code.highcharts.com/highcharts.src.js"></script> -->
-<script>
-$(document).ready(function() {
-    $('#overviewNav').addClass('active');
-});
-var dynamicColors = function () {
-  var chartColours = ['#6bd09', '#f17e5', '#fcc46', '#9f9f9', '#4cbdd', '#4accc', '#e3e3e'];
-  var letters = '0123456789ABCDEF';
-  var rand = chartColours[Math.floor(Math.random() * chartColours.length)];
-  rand += letters[Math.floor(Math.random() * letters.length)];
-  return rand;
-};
-
-$(document).ready(function() {
-
-    ctx = document.getElementById('chartEmail').getContext("2d");
-
-    myChart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: [{% for env in environments %}'{{ env }}'{% if not forloop.last %},{% endif %}{% endfor %}],
-        datasets: [{
-          label: "Environments",
-          pointRadius: 0,
-          pointHoverRadius: 0,
-          backgroundColor: [
-            {% for env in environments %}dynamicColors(){% if not forloop.last %}, {% endif %}{% endfor %}
-          ],
-          borderWidth: 0,
-          data: [{% for env in environments %}{{ env.host_count }}{% if not forloop.last %},{% endif %}{% endfor %}]
-        }]
-      },
-    });
-});
-</script>
 
 {% endblock %}

@@ -1,13 +1,11 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% block title %}Host list{% endblock %}
 
 {% block body %}
 
-<div class="content">
-
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card card-plain">
         {% include "_messages.html" %}
         <div class="card-header">
           <h4 class="card-title">Teams list</h4>
@@ -56,9 +54,6 @@
       </div><!--  end card  -->
     </div> <!-- end col-md-12 -->
   </div> <!-- end row -->
-
-</div>
-
 
 
 
