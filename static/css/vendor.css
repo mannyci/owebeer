@@ -17,9 +17,8 @@
       margin-top: 50px;
   }
   
-  .card-login,.card-signup {
-      top: 50px;
-      box-shadow: 0 0 40px #e3e3e3;
+  .card-login .card-title {
+    color: #51bcda;
   }
   
   .card-user .logo {
@@ -47,4 +46,13 @@
   .section {
     padding: 100px 0;
     position: relative;
+}
+
+.navbar .navbar-brand {
+  font-weight: 400;
+  margin: 5px 0;
+  padding: 20px 15px;
+  font-size: 1.25rem;
+  color: #51bcda;
+  text-transform: none
 }
