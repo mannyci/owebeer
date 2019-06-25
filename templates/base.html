@@ -41,7 +41,7 @@
               <a href="{% url 'ui:overview' %}" class="nav-link"><i class="fa fa-tachometer"></i> Overview</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="btn btn-just-icon btn-info" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false">
+              <a class="btn btn-just-icon btn-info" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false" title="Teams">
                 <i class="fa fa-users"></i>
                 <p class="d-lg-none">Teams</p>
               </a>
@@ -63,7 +63,7 @@
               </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="#account" class="btn btn-just-icon btn-warning" data-toggle="dropdown" aria-expanded="false">
+                <a href="#account" class="btn btn-just-icon btn-warning" data-toggle="dropdown" aria-expanded="false" title="Account">
                     {% if user.is_authenticated %}
                     <img src="{{ user.gravatar }}" width="18" height="18" class="img-circle img-no-padding">
                     {% else %}

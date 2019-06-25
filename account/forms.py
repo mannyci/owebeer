@@ -29,11 +29,18 @@ class SignupForm(UserCreationForm):
 
 class ProfileForm(forms.ModelForm):
     username = forms.CharField(disabled=True, widget=TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=EmailInput(attrs={'class': 'form-control'}))
-    first_name = forms.CharField(required=False, widget=TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(required=False, widget=TextInput(attrs={'class': 'form-control'}))
-    is_admin = forms.BooleanField(required=False, widget=CheckboxInput(attrs={'class': 'form-check-input'}))
+    email = forms.EmailField(required=True, widget=EmailInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(required=True, widget=TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(required=True, widget=TextInput(attrs={'class': 'form-control'}))
+    is_active = forms.BooleanField(required=False, disabled=True, widget=CheckboxInput(attrs={'class': 'form-check-sign'}))
 
     class Meta:
         model = Account
-        fields = ['username', 'email', 'first_name', 'last_name', 'is_admin']
+        fields = ['username', 'email', 'first_name', 'last_name', 'is_active']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and Account.objects.filter(email=email).exclude(username=username).exists():
+            raise forms.ValidationError(u'A user with that email already exists.')
+        return email
