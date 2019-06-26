@@ -10,7 +10,7 @@ from ui.utils import needs_setup
 # Redirect Index to ui or run first setup
 def index(request):
 	if needs_setup():
-		return redirect('ui:setup')
+		return redirect('ui:welcome')
 	else:
 		return redirect('ui:overview')
 

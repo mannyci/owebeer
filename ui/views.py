@@ -33,6 +33,18 @@ class DashboardView(LoginRequiredMixin, DetailView):
             'recentBeers': recentBeers
         }, request))
 
+class WelcomeView(View):
+    template = loader.get_template('setup/welcome.html')
+
+    def get(self, request):
+        if not needs_setup():
+            return redirect('account:login')
+
+        form = SetupForm(initial={
+            'username': 'admin',
+        })
+
+        return HttpResponse(self.template.render({'form': form}, request))
 
 class SetupView(View):
     template = loader.get_template('setup/setup.html')
