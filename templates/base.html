@@ -39,10 +39,12 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="{% url 'ui:overview' %}" class="nav-link"><i class="fa fa-tachometer"></i> Overview</a>
+              <a href="{% url 'ui:overview' %}" class="nav-link" title="Overview">
+                <i class="fa fa-tachometer text-info btn-magnify"></i>
+                <p class="d-lg-none">Overview</p>
             </li>
             <li class="nav-item dropdown">
-              <a class="btn btn-just-icon btn-info btn-magnify" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false" title="Teams">
+              <a class="btn text-info btn-magnify" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false" title="Teams">
                 <i class="fa fa-users"></i>
                 <p class="d-lg-none">Teams</p>
               </a>

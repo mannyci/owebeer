@@ -11,16 +11,18 @@
         </div>
         <h3 class="card-title">Set up</h3>
       </div>
-      <div class="card-body">
-        {% csrf_token %}
-        {% include "_form.html" %}
-      </div>
-      <div class="card-footer ">
-        <div class="form-group">
-          <input class="btn btn-primary btn-round float-right" type="submit" value="Add">
-          <a class="btn btn-warning btn-round float-left" href="javascript:history.back()">Back</a>
+      <form method="POST" action="{% url 'ui:setup' %}">
+        <div class="card-body">
+          {% csrf_token %}
+          {% include "_form.html" %}
         </div>
-      </div>
+        <div class="card-footer ">
+          <div class="form-group">
+            <input class="btn btn-primary btn-round float-right" type="submit" value="Add">
+            <a class="btn btn-warning btn-round float-left" href="javascript:history.back()">Back</a>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

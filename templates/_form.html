@@ -9,6 +9,11 @@
     {% endif %}
       {{ field }}
       {{ field.errors }}
+      {% if field.help_text %}
+      <p class="text-muted">
+        <i class="fa fa-question-circle"></i>  {{ field.help_text }}
+      </p>
+      {% endif %}
     </div>
   </div>
 </div>

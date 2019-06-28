@@ -61,7 +61,9 @@ class SetupView(View):
 
     def post(self, request):
         form = SetupForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
+            print(form.cleaned_data['username'])
             get_user_model().objects.create_superuser(
                 username=form.cleaned_data['username'],
                 email=form.cleaned_data['email'],
