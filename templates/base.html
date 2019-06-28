@@ -40,12 +40,13 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a href="{% url 'ui:overview' %}" class="nav-link" title="Overview">
-                <i class="fa fa-tachometer text-info btn-magnify"></i>
+                <i class="fa fa-tachometer text-info"></i>
                 <p class="d-lg-none">Overview</p>
+              </a>
             </li>
             <li class="nav-item dropdown">
-              <a class="btn text-info btn-magnify" data-toggle="dropdown" href="#teams" role="button" aria-haspopup="true" aria-expanded="false" title="Teams">
-                <i class="fa fa-users"></i>
+              <a class="nav-link" data-toggle="dropdown" href="#teams" title="Teams">
+                <i class="fa fa-users text-info"></i>
                 <p class="d-lg-none">Teams</p>
               </a>
               <ul class="dropdown-menu dropdown-menu-right dropdown-info">
@@ -55,24 +56,24 @@
             </li>
             {% if user.is_superuser %}
             <li class="nav-item">
-              <a class="btn btn-just-icon btn-danger btn-magnify" rel="tooltip" title="Admin" data-placement="bottom" href="{% url 'admin:index' %}">
-                <i class="nc-icon nc-settings"></i>
-                <p class="d-lg-none">Facebook</p>
+              <a class="nav-link" rel="tooltip" title="Admin" data-placement="bottom" href="{% url 'admin:index' %}">
+                <i class="nc-icon nc-settings text-info"></i>
+                <p class="d-lg-none">Admin</p>
               </a>
             </li>
             {% endif %}
             <li class="nav-item">
               <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-                <i class="fa fa-instagram"></i>
+                <i class="fa fa-instagram text-info"></i>
                 <p class="d-lg-none">Instagram</p>
               </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="#account" class="btn btn-just-icon btn-info" data-toggle="dropdown" aria-expanded="false" title="Account">
+                <a href="#account" class="nav-link" data-toggle="dropdown" aria-expanded="false" title="Account">
                     {% if user.is_authenticated %}
                     <img src="{{ user.gravatar }}" width="18" height="18" class="img-circle img-no-padding">
                     {% else %}
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-user text-info"></i>
                     {% endif %}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-info">
