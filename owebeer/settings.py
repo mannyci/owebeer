@@ -5,11 +5,29 @@ Django settings for owebeer project.
 import os
 # from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
+import ldap
+from django_auth_ldap.config import LDAPSearch
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 settings_dir = os.path.dirname(__file__)
 PROJECT_ROOT = os.path.abspath(settings_dir)
+
+#LDAP
+AUTH_LDAP_SERVER_URI = "ldap://ldap.forumsys.com"
+AUTH_LDAP_CONNECTION_OPTIONS = {ldap.OPT_REFERRALS: 0}
+AUTH_LDAP_BIND_DN = "cn=read-only-admin,dc=example,dc=com"
+AUTH_LDAP_BIND_PASSWORD = 'password'
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    'dc=example,dc=com',
+    ldap.SCOPE_SUBTREE,
+    '(uid=%(user)s)',
+)
+AUTH_LDAP_USER_ATTR_MAP = {"first_name": "givenName", "last_name": "sn", "email": "mail"}
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/

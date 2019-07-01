@@ -10,6 +10,7 @@ djangorestframework = "*"
 markup = "*"
 pylint = "*"
 Django = "==2.2"
+django-auth-ldap = "*"
 
 [requires]
 python_version = "3.6"
