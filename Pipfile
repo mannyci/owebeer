@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 django-debug-toolbar = "*"
 django-rest-swagger = "*"
+pylint = "*"
 
 [packages]
 djangorestframework = "*"
@@ -15,4 +16,4 @@ Django = "==2.2"
 update = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.*"
